@@ -2,8 +2,7 @@ import java.util.*;
 
 class Solution {
     public List<String> summaryRanges(int[] nums) {
-        List<String> result = new ArrayList<>();
-        
+        List<String> result = new ArrayList<>();   
         if (nums.length == 0) return result;
         
         int start = nums[0];
