@@ -16,6 +16,7 @@ class Solution {
                 mis = i;
             }
         }
+        System.gc(); //garbage collector to remove unused data
         return new int[]{dup, mis};
     }
 }
