@@ -11,7 +11,6 @@ class Solution {
             }
             leftSum += nums[i];
         }
-        System.gc();
         return -1;
     }
 }
