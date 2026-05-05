@@ -6,6 +6,7 @@ class Solution {
         for (int i = n - 1; i >= 0 && bits[i] == 1; i--) {
             count++;
         }
+        System.gc();
         return count % 2 == 0;
     }
 }
