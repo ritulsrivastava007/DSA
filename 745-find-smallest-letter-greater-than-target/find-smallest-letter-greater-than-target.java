@@ -10,7 +10,6 @@ class Solution {
                 low = mid + 1;
             }
         }
-        System.gc();
         return letters[low % letters.length];
     }
 }
