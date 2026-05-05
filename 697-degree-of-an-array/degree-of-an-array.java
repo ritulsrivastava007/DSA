@@ -27,6 +27,7 @@ class Solution {
                 minLength = Math.min(minLength, i - first[num] + 1);
             }
         }
+        System.gc();
         return minLength;
     }
 }
