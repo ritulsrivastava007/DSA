@@ -1,9 +1,6 @@
 class Solution {
     public int mySqrt(int x) {
-
-        int s = (int) Math.sqrt(x);
-
-        return s;
-        
+        double s = Math.sqrt(x);
+        return (int) (s);
     }
 }
