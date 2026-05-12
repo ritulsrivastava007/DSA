@@ -1,0 +1,5 @@
+Solved 8 LeetCode problems today.
+
+git add .
+git commit -m "LeetCode practice"
+git push
