@@ -1,6 +1,0 @@
-Solved 8 LeetCode problems today.
-
-echo "LeetCode practice day" >> today.txt
-git add today.txt
-git commit -m "daily practice"
-git push origin main
