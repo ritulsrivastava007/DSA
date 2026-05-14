@@ -1,16 +1,16 @@
 class Solution {
     public String licenseKeyFormatting(String s, int k) {
-        s = s.replace("-", "").toUpperCase(); 
-        String result = "";
-        int count = 0;
+        StringBuilder sb = new StringBuilder();
         for (int i = s.length() - 1; i >= 0; i--) {
-            result = s.charAt(i) + result;
-            count++;
-            if (count == k && i != 0) {
-                result = "-" + result;
-                count = 0;
+            char c = s.charAt(i);
+
+            if (c == '-') continue;
+
+            if (sb.length() % (k + 1) == k) {
+                sb.append('-');
             }
+            sb.append(Character.toUpperCase(c));
         }
-        return result;
+        return sb.reverse().toString();
     }
 }
