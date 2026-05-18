@@ -1,0 +1,28 @@
+class Solution {
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        int[] need = new int[26];
+        for(char ch : licensePlate.toLowerCase().toCharArray()) {
+            if(Character.isLetter(ch)) {
+                need[ch - 'a']++;
+            }
+        }
+        String ans = "";
+        for(String word : words) {
+            int[] have = new int[26];
+            for(char ch : word.toCharArray()) {
+                have[ch - 'a']++;
+            }
+            boolean ok = true;
+            for(int i = 0; i < 26; i++) {
+                if(have[i] < need[i]) {
+                    ok = false;
+                    break;
+                }
+            }
+            if(ok && (ans.equals("") || word.length() < ans.length())) {
+                ans = word;
+            }
+        }
+        return ans;
+    }
+}
