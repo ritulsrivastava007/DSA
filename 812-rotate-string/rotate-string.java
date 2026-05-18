@@ -3,14 +3,9 @@ class Solution {
         if(s.length() != goal.length()) {
             return false;
         }
-        char[] arr = s.toCharArray();
-        int n = arr.length;
-        for(int k = 0; k < n; k++) {
-            String rotated = "";
-            for(int i = 0; i < n; i++) {
-                rotated += arr[(k + i) % n];
-            }
-            if(rotated.equals(goal)) {
+        for(int i = 0; i < s.length(); i++) {
+            s = s.substring(1) + s.charAt(0);
+            if(s.equals(goal)) {
                 return true;
             }
         }
