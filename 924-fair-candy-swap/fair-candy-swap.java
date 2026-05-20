@@ -1,20 +1,15 @@
 class Solution {
     public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
-        int aliceSum = 0;
-        int bobSum = 0;
-        for (int a : aliceSizes) {
-            aliceSum += a;
-        }
-        for (int b : bobSizes) {
-            bobSum += b;
-        }
-        for (int a : aliceSizes) {
-            for (int b : bobSizes) {
-                if (aliceSum - a + b == bobSum - b + a) {
-                    return new int[]{a, b};
+        int a = 0, b = 0;
+        for (int x : aliceSizes) a += x;
+        for (int y : bobSizes) b += y;
+        for (int x : aliceSizes) {
+            for (int y : bobSizes) {
+                if (a - x + y == b - y + x) {
+                    return new int[]{x, y};
                 }
             }
         }
-        return new int[0];
+        return new int[]{};
     }
 }
