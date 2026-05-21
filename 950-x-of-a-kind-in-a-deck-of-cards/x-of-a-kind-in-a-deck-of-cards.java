@@ -5,16 +5,14 @@ class Solution {
             map.put(n, map.getOrDefault(n, 0) + 1);
         }
         int gcd = 0;
-        for (int freq : map.values()) {
-            int a = gcd;
-            int b = freq;
-            while (b != 0) {
-                int temp = b;
-                b = a % b;
-                a = temp;
+        for (int f : map.values()) {
+            while (gcd != 0) {
+                int temp = gcd;
+                gcd = f % gcd;
+                f = temp;
             }
-            gcd = a;
+            gcd = f;
         }
-        return gcd >= 2;
+        return gcd > 1;
     }
 }
