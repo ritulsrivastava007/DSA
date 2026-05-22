@@ -13,6 +13,7 @@ class Solution {
                 return false;
             }
         }
+        System.gc();
         return i == name.length();
     }
 }
