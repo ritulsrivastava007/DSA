@@ -1,20 +1,19 @@
 class Solution {
     public List<String> commonChars(String[] words) {
-        int[] minFreq = new int[26];
-        Arrays.fill(minFreq, Integer.MAX_VALUE);
-        for (String word : words) {
-            int[] freq = new int[26];
-            for (char ch : word.toCharArray()) {
-                freq[ch - 'a']++;
-            }
-            for (int i = 0; i < 26; i++) {
-                minFreq[i] = Math.min(minFreq[i], freq[i]);
-            }
-        }
         List<String> res = new ArrayList<>();
-        for (int i = 0; i < 26; i++) {
-            while (minFreq[i]-- > 0) {
-                res.add("" + (char)(i + 'a'));
+        for (char ch : words[0].toCharArray()) {
+            boolean found = true;
+            for (int i = 1; i < words.length; i++) {
+                if (!words[i].contains("" + ch)) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                res.add("" + ch);
+                for (int i = 1; i < words.length; i++) {
+                    words[i] = words[i].replaceFirst("" + ch, "");
+                }
             }
         }
         return res;
