@@ -1,8 +1,13 @@
 class Solution {
     public int findNumbers(int[] nums) {
-        int c=0;
-        for(int i:nums){
-            if(String.valueOf(i).length()%2==0){
+        int c = 0;
+        for (int i : nums) {
+            int count = 0;
+            while (i > 0) {
+                count++;
+                i /= 10;
+            }
+            if (count % 2 == 0) {
                 c++;
             }
         }
