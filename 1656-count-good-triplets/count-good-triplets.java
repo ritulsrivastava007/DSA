@@ -3,8 +3,12 @@ class Solution {
         int triplet = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
+                if (Math.abs(arr[j] - arr[i]) > a) {
+                    continue;
+                }
                 for (int k = j + 1; k < arr.length; k++) {
-                    if (Math.abs(arr[i]-arr[j])<=a && Math.abs(arr[j]-arr[k])<=b && Math.abs(arr[i]-arr[k])<=c) {
+                    if (Math.abs(arr[k] - arr[j]) <= b &&
+                        Math.abs(arr[k] - arr[i]) <= c) {
                         triplet++;
                     }
                 }
