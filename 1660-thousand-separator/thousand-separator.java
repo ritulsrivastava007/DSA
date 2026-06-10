@@ -1,17 +1,16 @@
 class Solution {
     public String thousandSeparator(int n) {
-        if (n == 0) return "0";
+        String s = Integer.toString(n);
         StringBuilder ans = new StringBuilder();
-        while (n > 0) {
-            int part = n % 1000;
-            n /= 1000;
-            if (n > 0) {
-                ans.insert(0, String.format("%03d", part));
-                ans.insert(0, ".");
-            } else {
-                ans.insert(0, part);
+        int count = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            ans.append(s.charAt(i));
+            count++;
+            if (count == 3 && i != 0) {
+                ans.append('.');
+                count = 0;
             }
         }
-        return ans.toString();
+        return ans.reverse().toString();
     }
 }
