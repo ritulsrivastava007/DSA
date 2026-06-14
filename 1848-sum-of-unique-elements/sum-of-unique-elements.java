@@ -1,13 +1,13 @@
-import java.util.Arrays;
 class Solution {
     public int sumOfUnique(int[] nums) {
-        Arrays.sort(nums);
-        int sum = 0;
-        for (int i=0; i<nums.length; i++){
-            boolean left=(i==0) || (nums[i]!=nums[i-1]);
-            boolean right=(i==nums.length-1) || (nums[i]!=nums[i+1]);
-            if (left && right){
-                sum+=nums[i];
+        int[] count = new int[101];
+        for (int num:nums){
+            count[num]++;
+        }
+        int sum=0;
+        for (int i=1; i<101; i++){
+            if (count[i]==1){
+                sum+=i;
             }
         }
         return sum;
