@@ -1,12 +1,13 @@
 class Solution {
     public String makeFancyString(String s) {
-        StringBuilder ans = new StringBuilder();
-        for (char ch : s.toCharArray()) {
-            if (ans.length()>=2 && ans.charAt(ans.length()-1)==ch && ans.charAt(ans.length()-2)==ch){
+        char[] arr = s.toCharArray();
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (j >= 2 && arr[i] == arr[j - 1] && arr[i] == arr[j - 2]) {
                 continue;
             }
-            ans.append(ch);
+            arr[j++] = arr[i];
         }
-        return ans.toString();
+        return new String(arr, 0, j);
     }
 }
