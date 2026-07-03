@@ -1,0 +1,19 @@
+class Solution {
+    public int countVowelSubstrings(String word) {
+        int ans = 0;
+        for (int i = 0; i < word.length(); i++) {
+            boolean[] seen = new boolean[5];
+            int cnt = 0;
+            for(int j=i;j<word.length();j++){
+                int k="aeiou".indexOf(word.charAt(j));
+                if (k == -1) break;
+                if (!seen[k]) {
+                    seen[k] = true;
+                    cnt++;
+                }
+                if (cnt == 5) ans++;
+            }
+        }
+        return ans;
+    }
+}
