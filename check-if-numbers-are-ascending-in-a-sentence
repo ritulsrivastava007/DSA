@@ -1,0 +1,13 @@
+class Solution {
+    public boolean areNumbersAscending(String s) {
+        int prev = -1;
+        for (String w : s.split(" ")) {
+            if (Character.isDigit(w.charAt(0))) {
+                int num = Integer.parseInt(w);
+                if (num <= prev) return false;
+                prev = num;
+            }
+        }
+        return true;
+    }
+}
