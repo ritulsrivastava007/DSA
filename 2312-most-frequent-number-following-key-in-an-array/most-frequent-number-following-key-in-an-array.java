@@ -1,19 +1,18 @@
 class Solution {
     public int mostFrequent(int[] nums, int key) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == key) {
-                int target = nums[i + 1];
-                map.put(target, map.getOrDefault(target, 0) + 1);
-            }
+      int[]result=new int[1000];
+      for(int i=0;i<nums.length-1;i++){
+        if(nums[i] ==key){
+            result[nums[i+1]-1]++;
+          }
         }
-        int ans = -1;
-        int max = 0;
-        for (int target : map.keySet()) {
-            if (map.get(target) > max) {
-                max = map.get(target);
-                ans = target;
-            }
+        int max=Integer.MIN_VALUE;
+        int ans=0; 
+        for(int i=0;i<1000;i++){ 
+            if(result[i] >max){ 
+                max=result[i];
+                ans=i+1;
+                }
         }
         return ans;
     }
