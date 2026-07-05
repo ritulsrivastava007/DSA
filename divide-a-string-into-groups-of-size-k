@@ -1,0 +1,20 @@
+class Solution {
+    public String[] divideString(String s, int k, char fill) {
+        int n = (s.length() + k - 1) / k;
+        String[] ans = new String[n];
+        int idx = 0;
+        for (int i = 0; i < s.length(); i += k) {
+            String group;
+            if (i + k <= s.length()) {
+                group = s.substring(i, i + k);
+            } else {
+                group = s.substring(i);
+                while (group.length() < k) {
+                    group += fill;
+                }
+            }
+            ans[idx++] = group;
+        }
+        return ans;
+    }
+}
