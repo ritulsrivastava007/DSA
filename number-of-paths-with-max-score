@@ -1,0 +1,62 @@
+class Solution {
+    public int[] pathsWithMaxScore(List<String> board) {
+        int n = board.size();
+        int MOD = 1_000_000_007;
+        int NEG = -1;
+
+        int[][] best = new int[n][n];
+        int[][] ways = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(best[i], NEG);
+        }
+
+        best[0][0] = 0;
+        ways[0][0] = 1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+
+                char ch = board.get(i).charAt(j);
+
+                if (ch == 'X') continue;
+                if (i == 0 && j == 0) continue;
+
+                int maxScore = NEG;
+                int count = 0;
+
+                int[][] prev = {{i - 1, j}, {i, j - 1}, {i - 1, j - 1}};
+
+                for (int[] p : prev) {
+                    int x = p[0], y = p[1];
+
+                    if (x < 0 || y < 0) continue;
+                    if (best[x][y] == NEG) continue;
+
+                    if (best[x][y] > maxScore) {
+                        maxScore = best[x][y];
+                        count = ways[x][y];
+                    } else if (best[x][y] == maxScore) {
+                        count = (count + ways[x][y]) % MOD;
+                    }
+                }
+
+                if (maxScore == NEG) continue;
+
+                int val = 0;
+                if (ch >= '1' && ch <= '9') {
+                    val = ch - '0';
+                }
+
+                best[i][j] = maxScore + val;
+                ways[i][j] = count;
+            }
+        }
+
+        if (ways[n - 1][n - 1] == 0) {
+            return new int[]{0, 0};
+        }
+
+        return new int[]{best[n - 1][n - 1], ways[n - 1][n - 1]};
+    }
+}
