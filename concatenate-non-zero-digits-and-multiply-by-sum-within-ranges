@@ -1,0 +1,65 @@
+import java.util.*;
+class Solution {
+    static final int MOD = 1_000_000_007;
+    public int[] sumAndMultiply(String s, int[][] queries) {
+        ArrayList<Integer> pos = new ArrayList<>();
+        ArrayList<Integer> dig = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            int d = s.charAt(i) - '0';
+            if (d != 0) {
+                pos.add(i);
+                dig.add(d);
+            }
+        }
+        int m = dig.size();
+        long[] pow = new long[m + 1];
+        pow[0] = 1;
+        for (int i = 1; i <= m; i++)
+            pow[i] = (pow[i - 1] * 10) % MOD;
+        long[] prefVal = new long[m + 1];
+        long[] prefSum = new long[m + 1];
+        for (int i = 0; i < m; i++) {
+            prefVal[i + 1] = (prefVal[i] * 10 + dig.get(i)) % MOD;
+            prefSum[i + 1] = prefSum[i] + dig.get(i);
+        }
+        int[] ans = new int[queries.length];
+
+        for (int i = 0; i < queries.length; i++) {
+            int l = queries[i][0];
+            int r = queries[i][1];
+
+            int left = lowerBound(pos, l);
+            int right = upperBound(pos, r) - 1;
+            if (left > right) {
+                ans[i] = 0;
+                continue;
+            }
+            int len = right - left + 1;
+            long sum = prefSum[right + 1] - prefSum[left];
+            long x = (prefVal[right + 1]
+                    - prefVal[left] * pow[len] % MOD
+                    + MOD) % MOD;
+
+            ans[i] = (int)((x * (sum % MOD)) % MOD);
+        }
+        return ans;
+    }
+    private int lowerBound(ArrayList<Integer> a, int target) {
+        int l = 0, r = a.size();
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (a.get(mid) >= target) r = mid;
+            else l = mid + 1;
+        }
+        return l;
+    }
+    private int upperBound(ArrayList<Integer> a, int target) {
+        int l = 0, r = a.size();
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (a.get(mid) > target) r = mid;
+            else l = mid + 1;
+        }
+        return l;
+    }
+}
