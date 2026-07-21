@@ -1,18 +1,11 @@
 class Solution {
     public int pivotInteger(int n) {
-        for (int x = 1; x <= n; x++) {
-            int left = 0;
-            int right = 0;
-            for (int i = 1; i <= x; i++) {
-                left += i;
-            }
-            for (int i = x; i <= n; i++) {
-                right += i;
-            }
-            if (left == right) {
-                return x;
-            }
+        int Sum = n * (n + 1) / 2;
+        int pivot = (int) Math.sqrt(Sum);
+        if (pivot * pivot == Sum) {
+            return pivot;
+        } else {
+            return -1;
         }
-        return -1;
     }
 }
