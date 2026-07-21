@@ -1,12 +1,13 @@
 class Solution {
     public boolean isCircularSentence(String sentence) {
         String[] words = sentence.split(" ");
-        for (int i = 0; i < words.length; i++) {
-            String current = words[i];
-            String next = words[(i + 1) % words.length];
-            if (current.charAt(current.length() - 1) != next.charAt(0)) {
+        for (int i = 0; i < words.length - 1; i++) {
+            if (words[i].charAt(words[i].length() - 1) != words[i + 1].charAt(0)) {
                 return false;
             }
+        }
+        if (words[0].charAt(0) != words[words.length - 1].charAt(words[words.length - 1].length() - 1)) {
+            return false;
         }
         return true;
     }
