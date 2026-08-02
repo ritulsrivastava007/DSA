@@ -1,15 +1,10 @@
 class Solution {
     public int differenceOfSums(int n, int m) {
-        int sum1 = 0, sum2 = 0;
+        int total = n * (n + 1) / 2;
 
-        for (int i = 1; i <= n; i++) {
-            if (i % m != 0) {
-                sum1 += i;
-            } else {
-                sum2 += i;
-            }
-        }
+        int count = n / m;
+        int multiplesSum = m * count * (count + 1) / 2;
 
-        return sum1 - sum2;
+        return total - 2 * multiplesSum;
     }
 }
