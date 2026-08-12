@@ -1,29 +1,23 @@
 class Solution {
     public int incremovableSubarrayCount(int[] nums) {
-        int n = nums.length, count = 0;
-        for (int len = 1; len <= n; len++) {
-            for (int start = 0; start + len <= n; start++) {
-                boolean[] remaining = new boolean[n];
-                for (int i = 0; i < n; i++) {
-                    if (i < start || i >= start + len) {
-                        remaining[i] = true;
-                    }
-                }
-                boolean increasing = true;
-                int prev = -1;
-                for (int i = 0; i < n; i++) {
-                    if (remaining[i]) {
-                        if (prev != -1 && nums[i] <= prev) {
-                            increasing = false;
-                            break;
-                        }
-                        prev = nums[i];
-                    }
-                }
-                if (increasing) {
-                    count++;
-                }
+        int n = nums.length, left = 0;
+        while (left < n - 1 && nums[left] < nums[left + 1]) {
+            left++;
+        }
+        if (left == n - 1) {
+            return n * (n + 1) / 2;
+        }
+        int count = left + 2;
+        int right = n - 1;
+        while (right > 0) {
+            while (left >= 0 && nums[left] >= nums[right]) {
+                left--;
             }
+            count += left + 2;
+            if (nums[right - 1] >= nums[right]) {
+                break;
+            }
+            right--;
         }
         return count;
     }
