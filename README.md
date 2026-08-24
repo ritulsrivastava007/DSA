@@ -1,72 +1,51 @@
-# DSA
-# 🧠 DSA & LeetCode Solutions Repository
+# 🚀 DSA in Java
 
-This repository contains my solutions to various Data Structures and Algorithms (DSA) problems from platforms like LeetCode. The goal is to improve problem-solving skills, understand core concepts, and prepare for coding interviews.
+> A structured LeetCode repository organized by **Topic → Difficulty** for coding interviews.
 
----
+## 📂 Folder Structure
 
-## 📌 About
+```text
+DSA/
+├── 01_Arrays/
+├── 02_Strings/
+├── 03_Binary_Search/
+├── 04_HashMap_Set/
+├── 05_Two_Pointers/
+├── 06_Sliding_Window/
+├── 07_Stack/
+├── 08_Queue/
+├── 09_Heaps_PriorityQueue/
+├── 10_Linked_List/
+├── 11_Trees/
+├── 12_BST/
+├── 13_Graphs/
+├── 14_Backtracking/
+├── 15_Greedy/
+├── 16_Dynamic_Programming/
+├── 17_Bit_Manipulation/
+└── 18_Math_GCD/
+```
 
-- 💻 Language used: Java (primary)
-- 📚 Problems: Arrays, Strings, Hashing, Recursion, Sliding Window, etc.
-- 🎯 Focus: Optimized solutions with clear logic and clean code
-- 🚀 Goal: Master DSA for interviews and competitive programming
+## 📝 Naming Convention
 
----
+```text
+Topic/Difficulty/ProblemNumber_ProblemName.java
+```
 
-## 🗂️ Problem Categories
+Example:
 
-### 🔢 Arrays
-- Contains Duplicate
-- Best Time to Buy and Sell Stock
-- Maximum Subarray
-- Two Sum
+```text
+01_Arrays/Easy/1_TwoSum.java
+16_Dynamic_Programming/Hard/1872_StoneGameVIII.java
+```
 
-### 🔤 Strings
-- Valid Anagram
-- Valid Palindrome
-- Longest Substring Without Repeating Characters
+## 🎯 Goals
 
-### 🧮 Hashing
-- Contains Duplicate II
-- Group Anagrams
+- ✅ Topic-wise organization
+- ✅ Easy / Medium / Hard separation
+- ✅ Clean Java solutions
+- ✅ Interview preparation
 
-### 🪟 Sliding Window
-- Maximum Sum Subarray of Size K
-- Longest Repeating Character Replacement
+## 💻 Language
 
-### 🔁 Recursion / Backtracking
-- Subsets
-- Permutations
-- Combination Sum
-
----
-
-## 📈 Progress
-
-| Category        | Status        |
-|----------------|--------------|
-| Arrays         | In Progress  |
-| Strings        | In Progress  |
-| Hashing        | In Progress  |
-| Sliding Window | In Progress  |
-| Recursion      | In Progress  |
-
----
-
-## 🧠 Approach
-
-Each problem typically includes:
-
-- Brute force solution (if applicable)
-- Optimized solution
-- Time & space complexity analysis
-- Clean and readable Java code
-
----
-
-## 🚀 How to Use
-
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/dsa-leetcode-solutions.git
+**Java**
