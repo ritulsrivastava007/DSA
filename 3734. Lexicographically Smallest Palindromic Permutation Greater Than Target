@@ -1,0 +1,56 @@
+class Solution {
+    private String target;
+    private String answer = "";
+    private int[] halfCount;
+    private int n, m;
+    private char mid;
+    public String lexPalindromicPermutation(String s, String target) {
+        this.target = target;
+        n = s.length();
+        m = n / 2;
+        int[] freq = new int[26];
+        for (char c : s.toCharArray()) freq[c - 'a']++;
+        halfCount = new int[26];
+        int odd = 0;
+        mid = 0;
+        for (int i = 0; i < 26; i++) {
+            if ((freq[i] & 1) == 1) {
+                odd++;
+                mid = (char) ('a' + i);
+            }
+            halfCount[i] = freq[i] / 2;
+        }
+        if (odd > 1) return "";
+        dfs(0, false, new StringBuilder());
+        return answer;
+    }
+    private boolean dfs(int pos, boolean greater, StringBuilder half) {
+        if (pos == m) {
+            StringBuilder pal = new StringBuilder();
+            pal.append(half);
+            if ((n & 1) == 1) pal.append(mid);
+            pal.append(new StringBuilder(half).reverse());
+            String res = pal.toString();
+            if (res.compareTo(target) > 0) {
+                answer = res;
+                return true;
+            }
+            return false;
+        }
+        for (int c = 0; c < 26; c++) {
+            if (halfCount[c] == 0) continue;
+            char ch = (char) ('a' + c);
+            boolean nextGreater = greater;
+            if (!greater) {
+                if (ch < target.charAt(pos)) continue;
+                if (ch > target.charAt(pos)) nextGreater = true;
+            }
+            halfCount[c]--;
+            half.append(ch);
+            if (dfs(pos + 1, nextGreater, half)) return true;
+            half.deleteCharAt(half.length() - 1);
+            halfCount[c]++;
+        }
+        return false;
+    }
+}
