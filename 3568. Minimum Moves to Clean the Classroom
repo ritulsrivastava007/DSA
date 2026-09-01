@@ -1,0 +1,94 @@
+import java.util.*;
+class Solution {
+    static class State {
+        int r, c, mask, energy, moves;
+        State(int r, int c, int mask, int energy, int moves) {
+            this.r = r;
+            this.c = c;
+            this.mask = mask;
+            this.energy = energy;
+            this.moves = moves;
+        }
+    }
+    public int minMoves(String[] classroom, int energy) {
+        int m = classroom.length;
+        int n = classroom[0].length();
+        int sr = -1, sc = -1;
+        List<int[]> litter = new ArrayList<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (classroom[i].charAt(j) == 'S') {
+                    sr = i;
+                    sc = j;
+                }
+                if (classroom[i].charAt(j) == 'L') {
+                    litter.add(new int[]{i, j});
+                }
+            }
+        }
+        int k = litter.size();
+        if (k == 0) {
+            return 0;
+        }
+        int allCollected = (1 << k) - 1;
+        int[][] litterMask = new int[m][n];
+        for (int i = 0; i < k; i++) {
+            int r = litter.get(i)[0];
+            int c = litter.get(i)[1];
+            litterMask[r][c] = 1 << i;
+        }
+        int[][][] best = new int[m][n][1 << k];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                Arrays.fill(best[i][j], -1);
+            }
+        }
+        Queue<State> queue = new ArrayDeque<>();
+        best[sr][sc][0] = energy;
+        queue.offer(new State(sr, sc, 0, energy, 0));
+        int[] dr = {-1, 1, 0, 0};
+        int[] dc = {0, 0, -1, 1};
+        while (!queue.isEmpty()) {
+            State cur = queue.poll();
+            int r = cur.r;
+            int c = cur.c;
+            int mask = cur.mask;
+            int currEnergy = cur.energy;
+            if (mask == allCollected) {
+                return cur.moves;
+            }
+            for (int d = 0; d < 4; d++) {
+                int nr = r + dr[d];
+                int nc = c + dc[d];
+                if (nr < 0 || nr >= m || nc < 0 || nc >= n) {
+                    continue;
+                }
+                if (classroom[nr].charAt(nc) == 'X') {
+                    continue;
+                }
+                if (currEnergy == 0) {
+                    continue;
+                }
+                int newEnergy = currEnergy - 1;
+                if (classroom[nr].charAt(nc) == 'R') {
+                    newEnergy = energy;
+                }
+                int newMask = mask | litterMask[nr][nc];
+                if (best[nr][nc][newMask] >= newEnergy) {
+                    continue;
+                }
+                best[nr][nc][newMask] = newEnergy;
+                queue.offer(
+                    new State(
+                        nr,
+                        nc,
+                        newMask,
+                        newEnergy,
+                        cur.moves + 1
+                    )
+                );
+            }
+        }
+        return -1;
+    }
+}
