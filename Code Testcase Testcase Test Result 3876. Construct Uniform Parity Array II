@@ -1,0 +1,30 @@
+class Solution {
+    public boolean uniformArray(int[] nums1) {
+        int minOdd = Integer.MAX_VALUE;
+        int minEven = Integer.MAX_VALUE;
+        for (int x : nums1) {
+            if ((x & 1) == 0) {
+                minEven = Math.min(minEven, x);
+            } else {
+                minOdd = Math.min(minOdd, x);
+            }
+        }
+        boolean canMakeOdd = true;
+        for (int x : nums1) {
+            if ((x & 1) == 0 && minOdd >= x) {
+                canMakeOdd = false;
+                break;
+            }
+        }
+        if (canMakeOdd)
+            return true;
+        boolean canMakeEven = true;
+        for (int x : nums1) {
+            if ((x & 1) == 1 && minOdd >= x) {
+                canMakeEven = false;
+                break;
+            }
+        }
+        return canMakeEven;
+    }
+}
